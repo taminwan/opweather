@@ -1,0 +1,14 @@
+<resources>
+  <string name="app_name">Weather Forecast</string>
+  <string name="search_hint">Please input name of a city</string>
+  <string name="search_require_min_search_length">At least input %s alphabet character(s)</string>
+  <string name="get_weather">Get Weather</string>
+  <string name="loading">Loading…</string>
+  <string name="no_results">No results.</string>
+  <string name="error">Sorry. Something goes wrong!</string>
+  <string name="display_date">Date: %s</string>
+  <string name="display_temperature">Average temperature: %s</string>
+  <string name="display_pressure">Pressure: %s</string>
+  <string name="display_humidity">Humidity: %s%%</string>
+  <string name="display_description">Description: %s</string>
+</resources>

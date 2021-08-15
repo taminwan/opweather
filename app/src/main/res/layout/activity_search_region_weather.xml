@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:paddingStart="@dimen/item_small_spacing"
+  android:paddingLeft="@dimen/item_small_spacing"
+  android:paddingEnd="@dimen/item_small_spacing"
+  android:paddingRight="@dimen/item_small_spacing"
+  tools:context=".screen.SearchRegionWeatherActivity">
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/ipSearch"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <EditText
+      android:id="@+id/edtSearch"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:imeOptions="actionSearch"
+      android:inputType="textNoSuggestions"
+      android:selectAllOnFocus="true" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/btnGet"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/get_weather"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/ipSearch" />
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/list"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:scrollbars="vertical"
+    app:layoutManager="LinearLayoutManager"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/btnGet"
+    tools:ignore="UnusedAttribute" />
+
+  <TextView
+    android:id="@+id/emptyList"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:text="@string/no_results"
+    android:textSize="@dimen/weather_text_size"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
