@@ -31,14 +31,8 @@ class EmptySuccessApiInstrumentedTest {
     mockWebServer.enqueue(
       MockResponse()
         .setResponseCode(200)
-        .setBody(
-          "{\n" +
-            "  \"cod\": \"200\",\n" +
-            "   \"list\": []\n" +
-            "}"
-        )
+        .setBody(FileReaderHelper.readStringFromFile("success_empty_response.json"))
     )
-    Thread.sleep(1000)
   }
 
   @After
@@ -48,14 +42,10 @@ class EmptySuccessApiInstrumentedTest {
   }
 
   @Test
-  fun searLocation_success_showNoResult() {
+  fun searchLocation_success_showNoResult() {
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("LonDon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
-
-    Thread.sleep(500)
-
     onView(ViewMatchers.withText("Sorry. Something goes wrong!")).check(doesNotExist())
-
     onView(ViewMatchers.withId(R.id.emptyList))
       .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
       .check(ViewAssertions.matches(ViewMatchers.withText("No results.")))

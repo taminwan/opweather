@@ -10,8 +10,4 @@ data class OPWeatherResponse(
   @field:SerializedName("main") val main: String,
   @field:SerializedName("description") val description: String,
   @field:SerializedName("icon") val icon: String,
-) {
-  fun isValid(): Boolean {
-    return description.isNotBlank()
-  }
-}
+)

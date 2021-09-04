@@ -1,0 +1,86 @@
+{
+  "city": {
+    "id": 2643743,
+    "name": "London",
+    "coord": {
+      "lon": -0.1257,
+      "lat": 51.5085
+    },
+    "country": "GB",
+    "population": 1000000,
+    "timezone": 3600
+  },
+  "cod": "200",
+  "message": 6.0721576,
+  "cnt": 2,
+  "list": [
+    {
+      "dt": 1630753200,
+      "sunrise": 1630732691,
+      "sunset": 1630780876,
+      "temp": {
+        "day": 17.65,
+        "min": 13.1,
+        "max": 20.05,
+        "night": 14.68,
+        "eve": 19.08,
+        "morn": 13.1
+      },
+      "feels_like": {
+        "day": 17.53,
+        "night": 14.11,
+        "eve": 18.64,
+        "morn": 12.87
+      },
+      "pressure": 1019,
+      "humidity": 79,
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 4.04,
+      "deg": 75,
+      "gust": 7.49,
+      "clouds": 91,
+      "pop": 0
+    },
+    {
+      "dt": 1630839600,
+      "sunrise": 1630819186,
+      "sunset": 1630867140,
+      "temp": {
+        "day": 21.28,
+        "min": 12.59,
+        "max": 23.22,
+        "night": 17.04,
+        "eve": 21.8,
+        "morn": 12.59
+      },
+      "feels_like": {
+        "day": 20.87,
+        "night": 16.5,
+        "eve": 21.37,
+        "morn": 12.1
+      },
+      "pressure": 1021,
+      "humidity": 54,
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "sky is clear",
+          "icon": "01d"
+        }
+      ],
+      "speed": 3.08,
+      "deg": 96,
+      "gust": 6.94,
+      "clouds": 1,
+      "pop": 0
+    }
+  ]
+}

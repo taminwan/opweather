@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
 import com.minwan.weatherforecast.model.OPWeatherListItemResponse
 import com.minwan.weatherforecast.ui.viewholder.OPWeatherViewHolder
-import com.minwan.weatherforecast.ui.viewholder.OPWeatherViewHolder.Companion
 
 /**
  * Adapter for the list of weather forecast items.

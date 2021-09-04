@@ -18,6 +18,7 @@ android {
     }
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
   }
 
   externalNativeBuild {
@@ -26,26 +27,42 @@ android {
     }
   }
 
+  testBuildType "localData"
+
   buildTypes {
-    debug {
-      buildConfigField "String", "HOST_MOCK", '"http://localhost:5555"'
-      buildConfigField "String", "HOST_PROD", '"https://api.openweathermap.org"'
-
-      // set this flag to true before running instrumented test case
-      // to allow fixed response from mockWebServer
-      // true : use mockeWebServer response for testing
-      // false : use response from OpenWeather service
-      buildConfigField "boolean", "IS_MOCK_TEST_ENABLE", "false"
-
+    localData {
+      /**
+       * Testing environment:
+       *  - Mock data
+       *  - For running test case with localhost
+       */
+      buildConfigField "String", "HOST", '"http://localhost:5555"'
       manifestPlaceholders = [usesCleartextTraffic:"true"]
+      signingConfig signingConfigs.debug
       debuggable true
     }
-    release {
-      buildConfigField "String", "HOST_PROD", '"https://api.openweathermap.org"'
-      buildConfigField "boolean", "IS_MOCK_TEST_ENABLE", "false"
-      minifyEnabled false
+
+    staging {
+      /**
+       * Development environment:
+       *  - Staging host
+       */
+      buildConfigField "String", "HOST", '"https://api.openweathermap.org"'
+      manifestPlaceholders = [usesCleartextTraffic:"false"]
+      signingConfig signingConfigs.debug
+      debuggable true
+    }
+
+    prod {
+      /**
+       * Production environment
+       *  - Production host
+       *  - Proguard configuration
+       */
+      buildConfigField "String", "HOST", '"https://api.openweathermap.org"'
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
       manifestPlaceholders = [usesCleartextTraffic:"false"]
+      minifyEnabled false
     }
   }
   compileOptions {

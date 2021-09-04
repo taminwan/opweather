@@ -23,11 +23,9 @@ class UserBadBehaviorTesting {
     ActivityTestRule(SearchRegionWeatherActivity::class.java)
 
   @Test
-  fun searLocation_blankInput_showNoResult() {
+  fun searchLocation_blankInput_showNoResult() {
     onView(ViewMatchers.withId(id.edtSearch)).perform(ViewActions.typeText("   "))
     onView(ViewMatchers.withId(id.btnGet)).perform(ViewActions.click())
-
-    Thread.sleep(500)
 
     onView(withText("Sorry. Something goes wrong!")).check(ViewAssertions.doesNotExist())
     onView(withText("At least input " + Cons.MIN_LENGTH_REGION_NAME + " alphabet character(s)"))
@@ -38,12 +36,10 @@ class UserBadBehaviorTesting {
   }
 
   @Test
-  fun searLocation_1_character_showNoResult() {
+  fun searchLocation_1_character_showNoResult() {
     onView(ViewMatchers.withId(id.edtSearch)).perform(ViewActions.typeText("a"))
     onView(ViewMatchers.withId(id.btnGet)).perform(ViewActions.click())
 
-    Thread.sleep(500)
-
     onView(withText("Sorry. Something goes wrong!"))
       .check(ViewAssertions.doesNotExist())
     onView(withText("At least input " + Cons.MIN_LENGTH_REGION_NAME + " alphabet character(s)"))
@@ -54,12 +50,10 @@ class UserBadBehaviorTesting {
   }
 
   @Test
-  fun searLocation_2_characters_showNoResult() {
+  fun searchLocation_2_characters_showNoResult() {
     onView(ViewMatchers.withId(id.edtSearch)).perform(ViewActions.typeText("ab"))
     onView(ViewMatchers.withId(id.btnGet)).perform(ViewActions.click())
 
-    Thread.sleep(500)
-
     onView(withText("Sorry. Something goes wrong!"))
       .check(ViewAssertions.doesNotExist())
     onView(withText("At least input " + Cons.MIN_LENGTH_REGION_NAME + " alphabet character(s)"))
@@ -70,11 +64,9 @@ class UserBadBehaviorTesting {
   }
 
   @Test
-  fun searLocation_3_characters_showNoResult() {
+  fun searchLocation_3_characters_showNoResult() {
     onView(ViewMatchers.withId(id.edtSearch)).perform(ViewActions.typeText("abc"))
     onView(ViewMatchers.withId(id.btnGet)).perform(ViewActions.click())
-
-    Thread.sleep(500)
 
     onView(withText("Sorry. Something goes wrong!"))
     onView(withText("At least input " + Cons.MIN_LENGTH_REGION_NAME + " alphabet character(s)"))

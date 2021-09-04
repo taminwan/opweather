@@ -47,12 +47,14 @@ class OPWeatherViewHolder(view: View) : ViewHolder(view) {
     val res = itemView.context.resources
     this.weatherForecastItem = weatherForecastItem
     weatherForecastItem.getWeather()?.let {
-      tvDate.text = res.getString(string.display_date, TimeHelper.convertEpochTimeToDisplayText(weatherForecastItem.dt))
+      tvDate.text =
+        res.getString(string.display_date, TimeHelper.convertEpochTimeToDisplayText(weatherForecastItem.dt))
       listOfTextView.forEach { it.isGone = false }
       tvHumidity.text = res.getString(string.display_humidity, weatherForecastItem.getDisplayHumidity())
       tvPressure.text = res.getString(string.display_pressure, weatherForecastItem.getDisplayPressure())
       tvTemperature.text = res.getString(string.display_temperature, weatherForecastItem.getDisplayTemperature())
-      tvDescription.text = res.getString(string.display_description, weatherForecastItem.getDisplayWeatherDescription())
+      tvDescription.text =
+        res.getString(string.display_description, weatherForecastItem.getDisplayWeatherDescription())
     }
   }
 

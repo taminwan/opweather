@@ -8,7 +8,6 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
-import com.minwan.weatherforecast.helper.Cons
 import com.minwan.weatherforecast.model.WeatherSearchResult
 import com.minwan.weatherforecast.repo.OpenWeatherRepository
 import com.minwan.weatherforecast.viewmodel.UiAction.Search

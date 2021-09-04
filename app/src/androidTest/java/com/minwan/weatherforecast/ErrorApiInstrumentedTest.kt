@@ -43,12 +43,10 @@ class ErrorApiInstrumentedTest {
         .setResponseCode(404)
         .setBody("")
     )
-    Thread.sleep(1000)
-
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("LonDon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
 
-    Thread.sleep(500)
+    Thread.sleep(100)
 
     onView(withText("Sorry. Something goes wrong!"))
 
@@ -63,12 +61,10 @@ class ErrorApiInstrumentedTest {
       MockResponse()
         .setResponseCode(400)
     )
-    Thread.sleep(1000)
-
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("LonDon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
 
-    Thread.sleep(500)
+    Thread.sleep(100)
 
     onView(withText("Sorry. Something goes wrong!"))
 
@@ -85,12 +81,10 @@ class ErrorApiInstrumentedTest {
         .setBody("")
     )
 
-    Thread.sleep(1000)
-
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("SaiGon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
 
-    Thread.sleep(500)
+    Thread.sleep(100)
 
     onView(withText("Sorry. Something goes wrong!"))
 

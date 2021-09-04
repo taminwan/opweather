@@ -22,13 +22,6 @@ interface OpenWeatherService {
   ): OpenWeatherResponse
 
   companion object {
-    var HOST = if (BuildConfig.IS_MOCK_TEST_ENABLE) {
-      BuildConfig.HOST_MOCK
-    } else {
-      BuildConfig.HOST_PROD
-    }
-
-
     fun create(): OpenWeatherService {
       val logger = HttpLoggingInterceptor()
       logger.level = Level.BASIC
@@ -37,7 +30,7 @@ interface OpenWeatherService {
         .addInterceptor(logger)
         .build()
       return Retrofit.Builder()
-        .baseUrl(HOST)
+        .baseUrl(BuildConfig.HOST)
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
