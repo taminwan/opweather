@@ -30,11 +30,6 @@ class SuccessApiInstrumentedTest {
   @Throws(IOException::class, InterruptedException::class)
   fun setup() {
     mockWebServer.start(5555)
-    mockWebServer.enqueue(
-      MockResponse()
-        .setResponseCode(200)
-        .setBody(FileReaderHelper.readStringFromFile("success_2_items_response.json"))
-    )
   }
 
   @After
@@ -45,10 +40,14 @@ class SuccessApiInstrumentedTest {
 
   @Test
   fun searchLocation_success_2_items() {
-    onView(ViewMatchers.withId(id.edtSearch)).perform(ViewActions.typeText("LonDon"))
-    onView(ViewMatchers.withId(id.btnGet)).perform(ViewActions.click())
+    mockWebServer.enqueue(
+      MockResponse()
+        .setResponseCode(200)
+        .setBody(FileReaderHelper.readStringFromFile("success_2_items_response.json"))
+    )
 
-    Thread.sleep(500)
+    onView(ViewMatchers.withId(id.edtSearch)).perform(ViewActions.typeText("London"))
+    onView(ViewMatchers.withId(id.btnGet)).perform(ViewActions.click())
 
     onView(withText("Sorry. Something goes wrong!")).check(doesNotExist())
     onView(ViewMatchers.withId(id.emptyList))

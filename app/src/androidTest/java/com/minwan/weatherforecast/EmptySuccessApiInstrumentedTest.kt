@@ -28,11 +28,6 @@ class EmptySuccessApiInstrumentedTest {
   @Throws(IOException::class, InterruptedException::class)
   fun setup() {
     mockWebServer.start(5555)
-    mockWebServer.enqueue(
-      MockResponse()
-        .setResponseCode(200)
-        .setBody(FileReaderHelper.readStringFromFile("success_empty_response.json"))
-    )
   }
 
   @After
@@ -43,6 +38,12 @@ class EmptySuccessApiInstrumentedTest {
 
   @Test
   fun searchLocation_success_showNoResult() {
+    mockWebServer.enqueue(
+      MockResponse()
+        .setResponseCode(200)
+        .setBody("")
+    )
+
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("LonDon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
     onView(ViewMatchers.withText("Sorry. Something goes wrong!")).check(doesNotExist())

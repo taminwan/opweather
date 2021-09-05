@@ -13,7 +13,6 @@ import androidx.lifecycle.map
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.minwan.weatherforecast.R
 import com.minwan.weatherforecast.databinding.ActivitySearchRegionWeatherBinding
-import com.minwan.weatherforecast.helper.Cons
 import com.minwan.weatherforecast.helper.Injection
 import com.minwan.weatherforecast.model.WeatherSearchResult
 import com.minwan.weatherforecast.ui.adapter.WeatherForecastAdapter
@@ -96,18 +95,9 @@ class SearchRegionWeatherActivity : AppCompatActivity() {
   }
 
   private fun ActivitySearchRegionWeatherBinding.updateWeatherListFromInput(onQueryChanged: (UiAction.Search) -> Unit) {
-    edtSearch.text.trim().let {
-      if (it.isNotBlank() && it.length >= Cons.MIN_LENGTH_REGION_NAME) {
-        list.scrollToPosition(0)
-        onQueryChanged(UiAction.Search(query = it.toString()))
-      } else {
-        showEmptyList()
-        Toast.makeText(
-          this@SearchRegionWeatherActivity,
-          getString(R.string.search_require_min_search_length, Cons.MIN_LENGTH_REGION_NAME.toString()),
-          Toast.LENGTH_LONG
-        ).show()
-      }
+    edtSearch.text.let {
+      list.scrollToPosition(0)
+      onQueryChanged(UiAction.Search(query = it.toString()))
     }
   }
 

@@ -5,7 +5,7 @@
   <string name="get_weather">Get Weather</string>
   <string name="loading">Loading…</string>
   <string name="no_results">No results.</string>
-  <string name="error">Sorry. Something went wrong!\nDetails: %s</string>
+  <string name="error">Sorry. Something goes wrong!\nDetails: %s</string>
   <string name="display_date">Date: %s</string>
   <string name="display_temperature">Average temperature: %s</string>
   <string name="display_pressure">Pressure: %s</string>

@@ -1,9 +1,9 @@
 package com.minwan.weatherforecast.repo
 
 import android.util.Log
-import com.minwan.weatherforecast.api.OpenWeatherService
 import com.minwan.weatherforecast.api.WeatherService
 import com.minwan.weatherforecast.helper.Cons
+import com.minwan.weatherforecast.helper.WeatherSearchResponseCache
 import com.minwan.weatherforecast.loader.OpenWeatherLoader
 import com.minwan.weatherforecast.model.WeatherSearchResult
 import kotlinx.coroutines.flow.Flow
@@ -26,12 +26,17 @@ class OpenWeatherRepository(private val service: WeatherService) {
    */
   suspend fun getSearchResultStream(newLocation: String): Flow<WeatherSearchResult> {
     Log.d("OpenWeatherRepository", "New location: $newLocation")
-    requestAndSaveData(newLocation)
+    val cacheWeatherResult = WeatherSearchResponseCache.getInstance().getWeatherResult(newLocation)
+    if (cacheWeatherResult == null) {
+      requestAndSaveData(newLocation)
+    } else {
+      searchResults.emit(cacheWeatherResult)
+    }
     return searchResults
   }
 
-  suspend fun getEmptyResult(): Flow<WeatherSearchResult> {
-    searchResults.emit(WeatherSearchResult.Success(emptyList()))
+  suspend fun getEmptyResultError(customMessage: String = ""): Flow<WeatherSearchResult> {
+    searchResults.emit(WeatherSearchResult.Error(Exception(customMessage)))
     return searchResults
   }
 
@@ -49,7 +54,9 @@ class OpenWeatherRepository(private val service: WeatherService) {
       )
       Log.d("OpenWeatherRepository", "response $response")
       val weatherForecastItems = response.items
-      searchResults.emit(WeatherSearchResult.Success(weatherForecastItems))
+      val successResponse = WeatherSearchResult.Success(weatherForecastItems)
+      searchResults.emit(successResponse)
+      WeatherSearchResponseCache.getInstance().putWeatherResult(newLocation, successResponse)
       successful = true
     } catch (ex: IOException) {
       searchResults.emit(WeatherSearchResult.Error(ex))

@@ -41,25 +41,6 @@ class ErrorApiInstrumentedTest {
     mockWebServer.enqueue(
       MockResponse()
         .setResponseCode(404)
-        .setBody("")
-    )
-    onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("LonDon"))
-    onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
-
-    Thread.sleep(100)
-
-    onView(withText("Sorry. Something goes wrong!"))
-
-    onView(ViewMatchers.withId(R.id.emptyList))
-      .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-      .check(ViewAssertions.matches(withText("No results.")))
-  }
-
-  @Test
-  fun searchLocation_failed_400_showNoResults() {
-    mockWebServer.enqueue(
-      MockResponse()
-        .setResponseCode(400)
     )
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("LonDon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
@@ -78,10 +59,27 @@ class ErrorApiInstrumentedTest {
     mockWebServer.enqueue(
       MockResponse()
         .setResponseCode(300)
-        .setBody("")
     )
 
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("SaiGon"))
+    onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
+
+    Thread.sleep(100)
+
+    onView(withText("Sorry. Something goes wrong!"))
+
+    onView(ViewMatchers.withId(R.id.emptyList))
+      .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+      .check(ViewAssertions.matches(withText("No results.")))
+  }
+
+  @Test
+  fun searchLocation_failed_400_showNoResults() {
+    mockWebServer.enqueue(
+      MockResponse()
+        .setResponseCode(400)
+    )
+    onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("LonDon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
 
     Thread.sleep(100)

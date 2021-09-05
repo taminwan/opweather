@@ -29,6 +29,7 @@ class UserBadBehaviorTesting {
 
     onView(withText("Sorry. Something goes wrong!")).check(ViewAssertions.doesNotExist())
     onView(withText("At least input " + Cons.MIN_LENGTH_REGION_NAME + " alphabet character(s)"))
+      .check(ViewAssertions.doesNotExist())
 
     onView(ViewMatchers.withId(id.emptyList))
       .check(ViewAssertions.matches(isDisplayed()))
