@@ -2,6 +2,7 @@ package com.minwan.weatherforecast.repo
 
 import android.util.Log
 import com.minwan.weatherforecast.api.OpenWeatherService
+import com.minwan.weatherforecast.api.WeatherService
 import com.minwan.weatherforecast.helper.Cons
 import com.minwan.weatherforecast.loader.OpenWeatherLoader
 import com.minwan.weatherforecast.model.WeatherSearchResult
@@ -13,14 +14,11 @@ import java.io.IOException
 /**
  * Repository class that works with local and service data
  */
-class OpenWeatherRepository(private val service: OpenWeatherService) {
+class OpenWeatherRepository(private val service: WeatherService) {
 
   private val TAG = "OpenWeatherRepository"
 
   private val searchResults = MutableSharedFlow<WeatherSearchResult>(replay = 1)
-
-  // avoid triggering multiple requests in the same time
-  private var isRequestInProgress = false
 
   /**
    * Search region's weather whose names match the newLocation, exposed as a stream of data that will emit
@@ -41,7 +39,6 @@ class OpenWeatherRepository(private val service: OpenWeatherService) {
    * Get service response and save response to cache
    */
   private suspend fun requestAndSaveData(newLocation: String): Boolean {
-    isRequestInProgress = true
     var successful = false
     try {
       val response = service.getWeatherForecastForRegion(
@@ -62,7 +59,6 @@ class OpenWeatherRepository(private val service: OpenWeatherService) {
       Log.e(TAG, "Unhandled exception: $ex")
       searchResults.emit(WeatherSearchResult.Error(ex))
     }
-    isRequestInProgress = false
     return successful
   }
 }

@@ -10,10 +10,10 @@ import com.minwan.weatherforecast.R.id
 import com.minwan.weatherforecast.R.layout
 import com.minwan.weatherforecast.R.string
 import com.minwan.weatherforecast.helper.TimeHelper
-import com.minwan.weatherforecast.model.OPWeatherListItemResponse
+import com.minwan.weatherforecast.model.WeatherListItemResponse
 
 /**
- * View Holder for a [OPWeatherListItemResponse] RecyclerView list item.
+ * View Holder for a [WeatherListItemResponse] RecyclerView list item.
  */
 class OPWeatherViewHolder(view: View) : ViewHolder(view) {
   private val tvDate: TextView = view.findViewById(id.tvDate)
@@ -29,9 +29,9 @@ class OPWeatherViewHolder(view: View) : ViewHolder(view) {
     tvDescription
   )
 
-  private var weatherForecastItem: OPWeatherListItemResponse? = null
+  private var weatherForecastItem: WeatherListItemResponse? = null
 
-  fun bind(data: OPWeatherListItemResponse?) {
+  fun bind(data: WeatherListItemResponse?) {
     if (data == null) {
       tvDate.text = ""
       listOfTextView.forEach {
@@ -43,7 +43,7 @@ class OPWeatherViewHolder(view: View) : ViewHolder(view) {
     }
   }
 
-  private fun showWeatherData(weatherForecastItem: OPWeatherListItemResponse) {
+  private fun showWeatherData(weatherForecastItem: WeatherListItemResponse) {
     val res = itemView.context.resources
     this.weatherForecastItem = weatherForecastItem
     weatherForecastItem.getWeather()?.let {

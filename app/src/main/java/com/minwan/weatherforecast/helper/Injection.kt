@@ -2,8 +2,8 @@ package com.minwan.weatherforecast.helper
 
 import androidx.lifecycle.ViewModelProvider.Factory
 import androidx.savedstate.SavedStateRegistryOwner
+import com.minwan.weatherforecast.api.ApiProvider
 import com.minwan.weatherforecast.api.OpenWeatherService
-import com.minwan.weatherforecast.api.OpenWeatherService.Companion
 import com.minwan.weatherforecast.repo.OpenWeatherRepository
 import com.minwan.weatherforecast.viewmodel.ViewModelFactory
 
@@ -15,7 +15,7 @@ object Injection {
    * Creates an instance of [OpenWeatherRepository] based on the [OpenWeatherService]
    */
   private fun provideOpenWeatherRepository(): OpenWeatherRepository {
-    return OpenWeatherRepository(OpenWeatherService.create())
+    return OpenWeatherRepository(ApiProvider.createApiService(OpenWeatherService::class.java))
   }
 
   /**
