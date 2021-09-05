@@ -101,6 +101,7 @@ class SearchRegionWeatherActivity : AppCompatActivity() {
         list.scrollToPosition(0)
         onQueryChanged(UiAction.Search(query = it.toString()))
       } else {
+        showEmptyList()
         Toast.makeText(
           this@SearchRegionWeatherActivity,
           getString(R.string.search_require_min_search_length, Cons.MIN_LENGTH_REGION_NAME.toString()),
@@ -124,9 +125,10 @@ class SearchRegionWeatherActivity : AppCompatActivity() {
             repoAdapter.submitList(result.list)
           }
           is WeatherSearchResult.Error -> {
+            showEmptyList()
             Toast.makeText(
               this@SearchRegionWeatherActivity,
-              getString(R.string.error),
+              String.format(getString(R.string.error), result.error.message),
               Toast.LENGTH_LONG
             ).show()
           }
@@ -134,7 +136,7 @@ class SearchRegionWeatherActivity : AppCompatActivity() {
       }
   }
 
-  private fun ActivitySearchRegionWeatherBinding.showEmptyList(show: Boolean) {
+  private fun ActivitySearchRegionWeatherBinding.showEmptyList(show: Boolean = true) {
     emptyList.isVisible = show
     list.isVisible = !show
   }
