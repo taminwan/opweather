@@ -1,6 +1,6 @@
 Simple application which get response from OpenWeatherMaps API by region/city name
 
-![image](https://user-images.githubusercontent.com/8493834/129487774-27c53132-54f6-43e9-b84c-407e38cd8bed.png)
+<img src="images/weather_forcast_app.png" width="300"/>
 
 
 ✅ --> Done
@@ -25,11 +25,11 @@ Simple application which get response from OpenWeatherMaps API by region/city na
 
 ✅ 7. Exception handling
 
-❌ 8. Caching handling
+✅ 8. Caching handling
 
 9. Secure Android app from:
   
-      ✅ a. Decompile APK
+      ❌ a. Decompile APK
   
       ❌ b. Rooted device
   
@@ -52,12 +52,20 @@ Simple application which get response from OpenWeatherMaps API by region/city na
   Also apply coroutine to simplify alot of works with asynchronous request
          
   Use JNI to hide some sensitive information (for appId key)
+  
+  Use simple LRU cache for client cache data, prevent from wasting request API
+  
+  <b>App architecture</b>
+  
+  <img src="images/app_architecture.png"/>
+  
  
+ </br>
  <h3>Brief explanation for the code folder structure and the key Java/Kotlin libraries and frameworks being used</h3>
  
  💡<b>Folder structure</b>
  
- ![image](https://user-images.githubusercontent.com/8493834/129488139-a2a64bdc-e542-4bc3-a9f4-b4c086b272d6.png)
+  <img src="images/folder_structure.png" width="600"/>
  
  api: For api service and resposne
  
@@ -77,9 +85,9 @@ Simple application which get response from OpenWeatherMaps API by region/city na
  
  viewmodel: for viewModel which handlle logical between data and UI
  
- 
- 
- 💡<b>Lib/framework used in this project</b>
+ </br>
+ </br>
+💡<b>Lib/framework used in this project</b>
  
  AndroiX
  
@@ -96,17 +104,19 @@ Simple application which get response from OpenWeatherMaps API by region/city na
  MockServer
  
  Espresso
- 
- 
- 
- 
+  
+ </br>
  <h3>All the required steps in order to get the application run on local computer</h3>
  
- Just with normal import with default AndroidSDK/NDK then you can use this application
+ 1. Import project with default AndroidSDK/NDK
+ 2. Make sure you pick "app" in build mode
+  <img src="images/pick_build_app.png" width="300"/>
+ 3. Select build variant "staging" for development environment
  
- <b>For instrumented testing, please chagne flag IS_MOCK_TEST_ENABLE in buildgradle application from false to true<b>
-      
-      true : use mock response for testing
-      
-      false : use response from OpenWeather service (default)
+ </br>
+ <b>For instrumented testing, please change build variant to localData<b>
+  
+ After that app will be in mocking data mode, allow to use mockServer data as response for testing
+  
+  <img src="images/localData_variant.png" width="600"/>
   
