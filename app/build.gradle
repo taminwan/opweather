@@ -62,7 +62,8 @@ android {
       buildConfigField "String", "HOST", '"https://api.openweathermap.org"'
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
       manifestPlaceholders = [usesCleartextTraffic:"false"]
-      minifyEnabled false
+      minifyEnabled true
+      shrinkResources true
     }
   }
   compileOptions {

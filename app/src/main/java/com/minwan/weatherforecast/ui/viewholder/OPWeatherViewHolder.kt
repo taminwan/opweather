@@ -8,8 +8,7 @@ import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.minwan.weatherforecast.R.id
 import com.minwan.weatherforecast.R.layout
-import com.minwan.weatherforecast.R.string
-import com.minwan.weatherforecast.helper.TimeHelper
+import com.minwan.weatherforecast.model.WeatherDisplayData
 import com.minwan.weatherforecast.model.WeatherListItemResponse
 
 /**
@@ -29,9 +28,9 @@ class OPWeatherViewHolder(view: View) : ViewHolder(view) {
     tvDescription
   )
 
-  private var weatherForecastItem: WeatherListItemResponse? = null
+  private var weatherForecastItem: WeatherDisplayData? = null
 
-  fun bind(data: WeatherListItemResponse?) {
+  fun bind(data: WeatherDisplayData?) {
     if (data == null) {
       tvDate.text = ""
       listOfTextView.forEach {
@@ -43,18 +42,16 @@ class OPWeatherViewHolder(view: View) : ViewHolder(view) {
     }
   }
 
-  private fun showWeatherData(weatherForecastItem: WeatherListItemResponse) {
+  private fun showWeatherData(weatherForecastItem: WeatherDisplayData) {
     val res = itemView.context.resources
     this.weatherForecastItem = weatherForecastItem
     weatherForecastItem.getWeather()?.let {
-      tvDate.text =
-        res.getString(string.display_date, TimeHelper.convertEpochTimeToDisplayText(weatherForecastItem.dt))
+      tvDate.text = weatherForecastItem.getTimeDisplayString(res)
       listOfTextView.forEach { it.isGone = false }
-      tvHumidity.text = res.getString(string.display_humidity, weatherForecastItem.getDisplayHumidity())
-      tvPressure.text = res.getString(string.display_pressure, weatherForecastItem.getDisplayPressure())
-      tvTemperature.text = res.getString(string.display_temperature, weatherForecastItem.getDisplayTemperature())
-      tvDescription.text =
-        res.getString(string.display_description, weatherForecastItem.getDisplayWeatherDescription())
+      tvHumidity.text = weatherForecastItem.getHumidityDisplayString(res)
+      tvPressure.text = weatherForecastItem.getPressureDisplayString(res)
+      tvTemperature.text = weatherForecastItem.getTemperatureDisplayString(res)
+      tvDescription.text = weatherForecastItem.getDescriptionDisplayString(res)
     }
   }
 

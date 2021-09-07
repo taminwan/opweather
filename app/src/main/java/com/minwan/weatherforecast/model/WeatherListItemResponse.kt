@@ -13,24 +13,28 @@ data class WeatherListItemResponse(
   @field:SerializedName("humidity") val humidity: Float,
   @field:SerializedName("weather") val weathers: List<WeatherData>,
   @field:SerializedName("temp") val temp: OPTempResponse,
-) {
-  fun getWeather(): WeatherData? {
+) : WeatherDisplayData {
+  override fun getDateTime(): Long {
+    return dt
+  }
+
+  override fun getWeather(): WeatherData? {
     return weathers.firstOrNull()
   }
 
-  fun getDisplayWeatherDescription(): String? {
+  override fun getWeatherDescription(): String? {
     return getWeather()?.description
   }
 
-  fun getDisplayTemperature(): String {
+  override fun getTemperature(): String {
     return temp.getDisplayTemperature()
   }
 
-  fun getDisplayHumidity(): String {
+  override fun getHumidity(): String {
     return humidity.roundToInt().toString()
   }
 
-  fun getDisplayPressure(): String {
+  override fun getPressure(): String {
     return pressure.roundToInt().toString()
   }
 }
