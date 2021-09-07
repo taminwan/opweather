@@ -4,6 +4,10 @@ import androidx.collection.LruCache
 import com.minwan.weatherforecast.model.WeatherSearchResult
 import java.util.Calendar
 
+/**
+ * Simple cache strategy that will serve cache data in 1 hour
+ * with same location name
+ */
 class WeatherSearchResponseCache private constructor() {
 
   private var cache: LruCache<String, WeatherSearchResult> = LruCache(Cons.MAX_RESULT_CACHE_SIZE)
@@ -21,7 +25,7 @@ class WeatherSearchResponseCache private constructor() {
 
   fun generateCacheKey(location: String, calendar: Calendar): String {
     val builder = StringBuilder()
-    builder.append(location.uppercase())
+    builder.append(location.trim().uppercase())
     builder.append(calendar.get(Calendar.YEAR))
     builder.append(calendar.get(Calendar.DAY_OF_YEAR))
     builder.append(calendar.get(Calendar.HOUR_OF_DAY))
@@ -34,5 +38,9 @@ class WeatherSearchResponseCache private constructor() {
 
   fun getWeatherResult(location: String): WeatherSearchResult? {
     return cache.get(generateCacheKey(location, Calendar.getInstance()))
+  }
+
+  fun clear() {
+    cache.evictAll()
   }
 }
