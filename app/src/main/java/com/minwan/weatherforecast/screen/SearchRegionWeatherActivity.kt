@@ -91,7 +91,10 @@ class SearchRegionWeatherActivity : AppCompatActivity() {
     uiState
       .map(UiState::query)
       .distinctUntilChanged()
-      .observe(this@SearchRegionWeatherActivity, edtSearch::setText)
+      .observe(this@SearchRegionWeatherActivity) { queryString ->
+        edtSearch.setText(queryString)
+        edtSearch.setSelection(queryString.length)
+      }
   }
 
   private fun ActivitySearchRegionWeatherBinding.updateWeatherListFromInput(onQueryChanged: (UiAction.Search) -> Unit) {
