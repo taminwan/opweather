@@ -33,9 +33,9 @@ Simple application which get response from OpenWeatherMaps API by region/city na
   
       ❌ b. Rooted device
   
-      ❌ c. Data transmission via network
+      ✅ c. Data transmission via network: force to use TLS and add trusted certificates
   
-      ❌ d. Encryption for sensitive information
+      ✅ d. Encryption for sensitive information: use so lib to store sensitive app key
  
  10. Accessibility for Disability Supports:
 
