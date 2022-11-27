@@ -45,8 +45,6 @@ class ErrorApiInstrumentedTest {
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("LonDon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
 
-    Thread.sleep(100)
-
     onView(withText("Sorry. Something goes wrong!"))
 
     onView(ViewMatchers.withId(R.id.emptyList))
@@ -64,8 +62,6 @@ class ErrorApiInstrumentedTest {
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("SaiGon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
 
-    Thread.sleep(100)
-
     onView(withText("Sorry. Something goes wrong!"))
 
     onView(ViewMatchers.withId(R.id.emptyList))
@@ -81,8 +77,6 @@ class ErrorApiInstrumentedTest {
     )
     onView(ViewMatchers.withId(R.id.edtSearch)).perform(ViewActions.typeText("LonDon"))
     onView(ViewMatchers.withId(R.id.btnGet)).perform(ViewActions.click())
-
-    Thread.sleep(100)
 
     onView(withText("Sorry. Something goes wrong!"))
 
