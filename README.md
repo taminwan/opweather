@@ -29,7 +29,7 @@ Simple application which get response from OpenWeatherMaps API by region/city na
 
 9. Secure Android app from:
   
-      ❌ a. Decompile APK
+      ✅ a. Decompile APK: setup pro-guard for prod variant
   
       ❌ b. Rooted device
   
